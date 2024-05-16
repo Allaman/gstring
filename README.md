@@ -11,10 +11,9 @@
     <img src="https://img.shields.io/github/v/release/Allaman/gstring?sort=semver" alt="last release"/>
   </p>
   <p>
-    Swiss army knife for manipulating strings
+    Swiss army knife for working with strings
   </p>
 </div>
-
 
 ## Use cases
 
