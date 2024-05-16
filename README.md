@@ -9,9 +9,11 @@
     <img src="https://img.shields.io/github/license/Allaman/gstring" alt="license"/>
     <img src="https://img.shields.io/github/v/release/Allaman/gstring?sort=semver" alt="last release"/>
   </p>
+  <p>
+    Swiss army knife for manipulating strings
+  </p>
 </div>
 
-_Swiss army knife for manipulating strings._
 
 ## Use cases
 
