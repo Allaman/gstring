@@ -1,0 +1,58 @@
+---
+version: "3"
+
+tasks:
+  default:
+    silent: true
+    cmds:
+      - task -l
+
+  install:
+    desc: Install App
+    cmds:
+      - task: fmt
+      - task: lint
+      - task: vet
+      - task: test
+      - task: build
+      - go install -ldflags "-X main.Version=main"
+
+  build:
+    desc: Build App
+    cmds:
+      - go build
+
+  run:
+    desc: Run App
+    cmds:
+      - go build && ./gstring
+
+  lint:
+    desc: Run linter
+    cmds:
+      - golangci-lint run .
+
+  fmt:
+    desc: Run formatter
+    cmds:
+      - go fmt .
+
+  test:
+    desc: Run tests
+    cmds:
+      - go test -failfast -cover
+
+  upgrade-deps:
+    desc: Upgrade all dependencies
+    cmds:
+      - go get -u ./...
+
+  vet:
+    desc: Run go vet
+    cmds:
+      - go vet
+
+  vuln:
+    desc: Check for vulnerabilities
+    cmds:
+      - govulncheck .
