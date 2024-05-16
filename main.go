@@ -5,7 +5,7 @@ import (
 )
 
 // will be overwritten in release pipeline
-var Version = "dev"
+var version = "dev"
 
 func main() {
 	cli := CLI{}
