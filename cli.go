@@ -32,12 +32,10 @@ type HtPassWDCmd struct {
 	Pass string `required:"" short:"p"`
 }
 
-type versionCmd struct {
-	Version string
-}
+type versionCmd struct{}
 
 func (c *versionCmd) Run() error {
-	fmt.Println(Version)
+	fmt.Println(version)
 	return nil
 }
 
