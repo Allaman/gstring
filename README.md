@@ -1,6 +1,7 @@
 <h1 align="center">Gstring</h1>
 
 <div align="center">
+    <img alt="GoReleaser Logo" src="https://github.com/Allaman/gstring/assets/12184268/b302769b-4cfe-4ef4-83c4-f01c9f505bb9?v=3&s=200" height="140" />
   <p>
     <img src="https://github.com/Allaman/gstring/actions/workflows/release.yaml/badge.svg" alt="Release"/>
     <img src="https://img.shields.io/github/repo-size/Allaman/gstring" alt="size"/>
