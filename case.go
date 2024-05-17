@@ -42,15 +42,20 @@ func toRandomCase(str string) string {
 }
 
 func toCamelCase(s string) string {
-	words := strings.Fields(s)
+	// Replace spaces with underscores to handle both spaces and underscores uniformly
+	s = strings.ReplaceAll(s, " ", "_")
+
+	words := strings.Split(s, "_")
 
 	titleCaser := cases.Title(language.Und)
+	lowerCaser := cases.Lower(language.Und)
 
+	// Capitalize each word except the first one
 	for i, word := range words {
 		if i == 0 {
-			words[i] = strings.ToLower(word)
+			words[i] = lowerCaser.String(word)
 		} else {
-			words[i] = titleCaser.String(strings.ToLower(word))
+			words[i] = titleCaser.String(lowerCaser.String(word))
 		}
 	}
 

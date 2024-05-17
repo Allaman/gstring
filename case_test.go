@@ -12,6 +12,7 @@ func TestToCamelCase(t *testing.T) {
 	}{
 		{"hello world", "helloWorld"},
 		{"Hello World", "helloWorld"},
+		{"hello_world", "helloWorld"},
 		{"HELLO WORLD", "helloWorld"},
 		{"hello WORLD", "helloWorld"},
 		{"", ""},
