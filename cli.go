@@ -40,8 +40,8 @@ type CLI struct {
 }
 
 type HtPassWDCmd struct {
-	User string `required:"" short:"u"`
-	Pass string `required:"" short:"p"`
+	User string `required:"" short:"u" help:"The username"`
+	Pass string `required:"" short:"p" help:"The password (pay attention to shell history)"`
 }
 
 type versionCmd struct{}
