@@ -22,9 +22,10 @@ type CLI struct {
 	} `cmd:"" help:"Format various cases"`
 	HtPassWD HtPassWDCmd `cmd:"" name:"htpasswd" help:"Create a htpasswd string"`
 	Reverse  reverseCmd  `cmd:"" help:"Reverse the input"`
-	SHA      struct {
-		SHA256 sha256Cmd `cmd:"" name:"256" help:"Calculate SHA 256"`
-		SHA512 sha512Cmd `cmd:"" name:"512" help:"Calculate SHA 512"`
+	Hash     struct {
+		SHA256 sha256Cmd `cmd:"" name:"sha256" help:"Calculate Sha256"`
+		SHA512 sha512Cmd `cmd:"" name:"sha512" help:"Calculate Sha512"`
+		MD5    md5Cmd    `cmd:"" name:"md5" help:"Calculate MD5"`
 	} `cmd:"" help:"Calculate SHA Hashsums"`
 	Version versionCmd `cmd:"" help:"Show version information"`
 }
@@ -193,11 +194,23 @@ func (c *sha256Cmd) Run() error {
 	fmt.Println(calculateSHA256(in))
 	return nil
 }
+
 func (c *sha512Cmd) Run() error {
 	in, err := readFromSTDIN()
 	if err != nil {
 		return err
 	}
 	fmt.Println(calculateSHA512(in))
+	return nil
+}
+
+type md5Cmd struct{}
+
+func (c *md5Cmd) Run() error {
+	in, err := readFromSTDIN()
+	if err != nil {
+		return err
+	}
+	fmt.Println(calculateMD5(in))
 	return nil
 }

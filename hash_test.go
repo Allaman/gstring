@@ -47,3 +47,25 @@ func TestCalculateSHA512(t *testing.T) {
 		})
 	}
 }
+
+func TestCalculateMD5(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected string
+	}{
+		{"hello world", "5eb63bbbe01eeed093cb22bb8f5acdc3"},
+		{"Hello, 世界", "3dbca55819ed79f62e6f770eef640eee"},
+		{"", "d41d8cd98f00b204e9800998ecf8427e"},
+		{"abc", "900150983cd24fb0d6963f7d28e17f72"},
+		{"Go is awesome!", "572a27a144f77f4a657130b57cdf1742"},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.input, func(t *testing.T) {
+			result := calculateMD5(tt.input)
+			if result != tt.expected {
+				t.Errorf("calculateMD5(%q) = %q; want %q", tt.input, result, tt.expected)
+			}
+		})
+	}
+}
