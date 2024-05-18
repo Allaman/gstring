@@ -18,7 +18,7 @@
 ## Use cases
 
 ```
-❯ gstring --help
+❯ gstring
 Usage: gstring <command> [flags]
 
 A tool to work with strings
@@ -32,15 +32,16 @@ Commands:
   count chars      Count characters
   count words      Count words
   case camel       formatCamelCase
+  case lower       format lower
   case random      ForMat rANdom CaSE
   case snake       format_snake_case
+  case upper       FORMAT UPPER
   htpasswd         Create a htpasswd string
   reverse          Reverse the input
-  sha 256          Calculate SHA 256
-  sha 512          Calculate SHA 512
+  hash sha256      Calculate Sha256
+  hash sha512      Calculate Sha512
+  hash md5         Calculate MD5
   version          Show version information
-
-Run "gstring <command> --help" for more information on a command.
 ```
 
 ## Get gstring
