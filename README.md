@@ -44,6 +44,8 @@ Commands:
   hex from         Convert hexadecimal back
   htpasswd         Create a htpasswd string
   reverse          Reverse the input
+  url encode       Encode string to valid URL
+  url decode       Decode URL to string
   version          Show version information
 
 Run "gstring <command> --help" for more information on a command.

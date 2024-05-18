@@ -36,7 +36,11 @@ type CLI struct {
 	} `cmd:"" name:"hex" help:"Hexadeicmal converting"`
 	HtPassWD HtPassWDCmd `cmd:"" name:"htpasswd" help:"Create a htpasswd string"`
 	Reverse  reverseCmd  `cmd:"" help:"Reverse the input"`
-	Version  versionCmd  `cmd:"" help:"Show version information"`
+	URL      struct {
+		Encode encodeURLCmd `cmd:"" help:"Encode string to valid URL"`
+		Decode decodeURLCmd `cmd:"" help:"Decode URL to string"`
+	} `cmd:"" help:"URL Encoding and Decoding"`
+	Version versionCmd `cmd:"" help:"Show version information"`
 }
 
 type HtPassWDCmd struct {
@@ -250,4 +254,32 @@ func (c *fromHexCmd) Run(globals *Globals) error {
 	}
 	printOutput(out, globals.Trim)
 	return nil
+}
+
+type encodeURLCmd struct{}
+type decodeURLCmd struct{}
+
+func (c *encodeURLCmd) Run(globals *Globals) error {
+	return func() error {
+		in, err := readFromSTDIN()
+		if err != nil {
+			return err
+		}
+		printOutput(encodeURL(in), globals.Trim)
+		return nil
+	}()
+}
+func (c *decodeURLCmd) Run(globals *Globals) error {
+	return func() error {
+		in, err := readFromSTDIN()
+		if err != nil {
+			return err
+		}
+		decoded, err := decodeURL(in)
+		if err != nil {
+			return err
+		}
+		printOutput(decoded, globals.Trim)
+		return nil
+	}()
 }
