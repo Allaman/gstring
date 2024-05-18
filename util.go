@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"os"
 )
@@ -12,4 +13,12 @@ func readFromSTDIN() (string, error) {
 	}
 
 	return string(stdin), nil
+}
+
+func printOutput(s interface{}, trim bool) {
+	if trim {
+		fmt.Print(s)
+	} else {
+		fmt.Println(s)
+	}
 }

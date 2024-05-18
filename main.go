@@ -17,7 +17,7 @@ func main() {
 			Compact: true,
 			Summary: false,
 		}))
-	err := ctx.Run(&cli)
+	err := ctx.Run(&cli.Globals)
 	if err != nil {
 		panic(err)
 	}

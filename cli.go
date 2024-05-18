@@ -4,7 +4,12 @@ import (
 	"fmt"
 )
 
+type Globals struct {
+	Trim bool `default:"false" short:"t" help:"Trim output (for piping)"`
+}
+
 type CLI struct {
+	Globals
 	Base64 struct {
 		Encode encodeBase64Cmd `cmd:"" help:"Encode with base64"`
 		Decode decodeBase64Cmd `cmd:"" help:"Decode with base64"`
@@ -38,7 +43,7 @@ type HtPassWDCmd struct {
 type versionCmd struct{}
 
 func (c *versionCmd) Run() error {
-	fmt.Println(version)
+	printOutput(version, false)
 	return nil
 }
 
@@ -50,7 +55,7 @@ type countWordsCmd struct {
 	Word string `optional:"" short:"w" help:"Count only a specific word"`
 }
 
-func (c *countCharsCmd) Run() error {
+func (c *countCharsCmd) Run(globals *Globals) error {
 	in, err := readFromSTDIN()
 	if err != nil {
 		return err
@@ -60,49 +65,49 @@ func (c *countCharsCmd) Run() error {
 		if len(runes) > 1 {
 			return fmt.Errorf("provide only one character")
 		}
-		fmt.Println(countChars(in, rune(runes[0])))
+		printOutput((countChars(in, rune(runes[0]))), globals.Trim)
 	} else {
-		fmt.Println(countChars(in))
+		printOutput((countChars(in)), globals.Trim)
 	}
 	return nil
 }
 
-func (c *countWordsCmd) Run() error {
+func (c *countWordsCmd) Run(globals *Globals) error {
 	in, err := readFromSTDIN()
 	if err != nil {
 		return err
 	}
 	if c.Word != "" {
-		fmt.Println(countWords(in, c.Word))
+		printOutput(countWords(in, c.Word), globals.Trim)
 	} else {
-		fmt.Println(countWords(in))
+		printOutput(countWords(in), globals.Trim)
 	}
 	return nil
 }
 
-func (c *HtPassWDCmd) Run() error {
+func (c *HtPassWDCmd) Run(globals *Globals) error {
 	entry, err := generateHtpasswdEntry(c.User, c.Pass)
 	if err != nil {
 		return err
 	}
-	fmt.Println(entry)
+	printOutput(entry, globals.Trim)
 	return nil
 }
 
 type encodeBase64Cmd struct{}
 type decodeBase64Cmd struct{}
 
-func (c *encodeBase64Cmd) Run() error {
+func (c *encodeBase64Cmd) Run(globals *Globals) error {
 	return func() error {
 		in, err := readFromSTDIN()
 		if err != nil {
 			return err
 		}
-		fmt.Println(encodeBase64(in))
+		printOutput(encodeBase64(in), globals.Trim)
 		return nil
 	}()
 }
-func (c *decodeBase64Cmd) Run() error {
+func (c *decodeBase64Cmd) Run(globals *Globals) error {
 	return func() error {
 		in, err := readFromSTDIN()
 		if err != nil {
@@ -112,105 +117,105 @@ func (c *decodeBase64Cmd) Run() error {
 		if err != nil {
 			return err
 		}
-		fmt.Println(decoded)
+		printOutput(decoded, globals.Trim)
 		return nil
 	}()
 }
 
 type camelCaseCmd struct{}
 
-func (c *camelCaseCmd) Run() error {
+func (c *camelCaseCmd) Run(globals *Globals) error {
 	in, err := readFromSTDIN()
 	if err != nil {
 		return err
 	}
-	fmt.Println(toCamelCase(in))
+	printOutput(toCamelCase(in), globals.Trim)
 	return nil
 }
 
 type randomCaseCmd struct{}
 
-func (c *randomCaseCmd) Run() error {
+func (c *randomCaseCmd) Run(globals *Globals) error {
 	in, err := readFromSTDIN()
 	if err != nil {
 		return err
 	}
-	fmt.Println(toRandomCase(in))
+	printOutput(toRandomCase(in), globals.Trim)
 	return nil
 }
 
 type snakeCaseCmd struct{}
 
-func (c *snakeCaseCmd) Run() error {
+func (c *snakeCaseCmd) Run(globals *Globals) error {
 	in, err := readFromSTDIN()
 	if err != nil {
 		return err
 	}
-	fmt.Println(toSnakeCase(in))
+	printOutput(toSnakeCase(in), globals.Trim)
 	return nil
 }
 
 type upperCaseCmd struct{}
 
-func (c *upperCaseCmd) Run() error {
+func (c *upperCaseCmd) Run(globals *Globals) error {
 	in, err := readFromSTDIN()
 	if err != nil {
 		return err
 	}
-	fmt.Println(toUpper(in))
+	printOutput(toUpper(in), globals.Trim)
 	return nil
 }
 
 type lowerCaseCmd struct{}
 
-func (c *lowerCaseCmd) Run() error {
+func (c *lowerCaseCmd) Run(globals *Globals) error {
 	in, err := readFromSTDIN()
 	if err != nil {
 		return err
 	}
-	fmt.Println(toLower(in))
+	printOutput(toLower(in), globals.Trim)
 	return nil
 }
 
 type reverseCmd struct{}
 
-func (c *reverseCmd) Run() error {
+func (c *reverseCmd) Run(globals *Globals) error {
 	in, err := readFromSTDIN()
 	if err != nil {
 		return err
 	}
-	fmt.Println(reverseString(in))
+	printOutput(reverseString(in), globals.Trim)
 	return nil
 }
 
 type sha256Cmd struct{}
 type sha512Cmd struct{}
 
-func (c *sha256Cmd) Run() error {
+func (c *sha256Cmd) Run(globals *Globals) error {
 	in, err := readFromSTDIN()
 	if err != nil {
 		return err
 	}
-	fmt.Println(calculateSHA256(in))
+	printOutput(calculateSHA256(in), globals.Trim)
 	return nil
 }
 
-func (c *sha512Cmd) Run() error {
+func (c *sha512Cmd) Run(globals *Globals) error {
 	in, err := readFromSTDIN()
 	if err != nil {
 		return err
 	}
-	fmt.Println(calculateSHA512(in))
+	printOutput(calculateSHA512(in), globals.Trim)
 	return nil
 }
 
 type md5Cmd struct{}
 
-func (c *md5Cmd) Run() error {
+func (c *md5Cmd) Run(globals *Globals) error {
 	in, err := readFromSTDIN()
 	if err != nil {
 		return err
 	}
-	fmt.Println(calculateMD5(in))
+	printOutput(calculateMD5(in), globals.Trim)
 	return nil
 }
