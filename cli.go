@@ -15,8 +15,10 @@ type CLI struct {
 	} `cmd:"" help:"Count various things"`
 	Case struct {
 		Camel  camelCaseCmd  `cmd:"" help:"formatCamelCase"`
+		Lower  lowerCaseCmd  `cmd:"" help:"format lower"`
 		Random randomCaseCmd `cmd:"" help:"ForMat rANdom CaSE"`
 		Snake  snakeCaseCmd  `cmd:"" help:"format_snake_case"`
+		Upper  upperCaseCmd  `cmd:"" help:"FORMAT UPPER"`
 	} `cmd:"" help:"Format various cases"`
 	HtPassWD HtPassWDCmd `cmd:"" name:"htpasswd" help:"Create a htpasswd string"`
 	Reverse  reverseCmd  `cmd:"" help:"Reverse the input"`
@@ -144,6 +146,28 @@ func (c *snakeCaseCmd) Run() error {
 		return err
 	}
 	fmt.Println(toSnakeCase(in))
+	return nil
+}
+
+type upperCaseCmd struct{}
+
+func (c *upperCaseCmd) Run() error {
+	in, err := readFromSTDIN()
+	if err != nil {
+		return err
+	}
+	fmt.Println(toUpper(in))
+	return nil
+}
+
+type lowerCaseCmd struct{}
+
+func (c *lowerCaseCmd) Run() error {
+	in, err := readFromSTDIN()
+	if err != nil {
+		return err
+	}
+	fmt.Println(toLower(in))
 	return nil
 }
 

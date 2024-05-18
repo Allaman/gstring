@@ -92,3 +92,11 @@ func toSnakeCase(s string) string {
 
 	return snake
 }
+
+func toUpper(s string) string {
+	return strings.ToUpper(s)
+}
+
+func toLower(s string) string {
+	return strings.ToLower(s)
+}

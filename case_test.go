@@ -113,3 +113,49 @@ func TestToSnakeCase(t *testing.T) {
 		})
 	}
 }
+
+func TestToUpper(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected string
+	}{
+		{"hello", "HELLO"},
+		{"Hello World", "HELLO WORLD"},
+		{"hello_world", "HELLO_WORLD"},
+		{"HELLO", "HELLO"},
+		{"123abc", "123ABC"},
+		{"", ""},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.input, func(t *testing.T) {
+			result := toUpper(tt.input)
+			if result != tt.expected {
+				t.Errorf("toUpper(%q) = %q; want %q", tt.input, result, tt.expected)
+			}
+		})
+	}
+}
+
+func TestToLower(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected string
+	}{
+		{"HELLO", "hello"},
+		{"Hello World", "hello world"},
+		{"HELLO_WORLD", "hello_world"},
+		{"hello", "hello"},
+		{"123ABC", "123abc"},
+		{"", ""},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.input, func(t *testing.T) {
+			result := toLower(tt.input)
+			if result != tt.expected {
+				t.Errorf("toLower(%q) = %q; want %q", tt.input, result, tt.expected)
+			}
+		})
+	}
+}
