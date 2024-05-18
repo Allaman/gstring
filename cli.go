@@ -20,14 +20,14 @@ type CLI struct {
 		Snake  snakeCaseCmd  `cmd:"" help:"format_snake_case"`
 		Upper  upperCaseCmd  `cmd:"" help:"FORMAT UPPER"`
 	} `cmd:"" help:"Format various cases"`
-	HtPassWD HtPassWDCmd `cmd:"" name:"htpasswd" help:"Create a htpasswd string"`
-	Reverse  reverseCmd  `cmd:"" help:"Reverse the input"`
-	Hash     struct {
+	Hash struct {
 		SHA256 sha256Cmd `cmd:"" name:"sha256" help:"Calculate Sha256"`
 		SHA512 sha512Cmd `cmd:"" name:"sha512" help:"Calculate Sha512"`
 		MD5    md5Cmd    `cmd:"" name:"md5" help:"Calculate MD5"`
 	} `cmd:"" help:"Calculate SHA Hashsums"`
-	Version versionCmd `cmd:"" help:"Show version information"`
+	HtPassWD HtPassWDCmd `cmd:"" name:"htpasswd" help:"Create a htpasswd string"`
+	Reverse  reverseCmd  `cmd:"" help:"Reverse the input"`
+	Version  versionCmd  `cmd:"" help:"Show version information"`
 }
 
 type HtPassWDCmd struct {

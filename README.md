@@ -18,7 +18,7 @@
 ## Use cases
 
 ```
-❯ gstring
+❯ gstring --help
 Usage: gstring <command> [flags]
 
 A tool to work with strings
@@ -36,12 +36,14 @@ Commands:
   case random      ForMat rANdom CaSE
   case snake       format_snake_case
   case upper       FORMAT UPPER
-  htpasswd         Create a htpasswd string
-  reverse          Reverse the input
   hash sha256      Calculate Sha256
   hash sha512      Calculate Sha512
   hash md5         Calculate MD5
+  htpasswd         Create a htpasswd string
+  reverse          Reverse the input
   version          Show version information
+
+Run "gstring <command> --help" for more information on a command.
 ```
 
 ## Get gstring
