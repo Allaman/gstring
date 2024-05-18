@@ -30,6 +30,10 @@ type CLI struct {
 		SHA512 sha512Cmd `cmd:"" name:"sha512" help:"Calculate Sha512"`
 		MD5    md5Cmd    `cmd:"" name:"md5" help:"Calculate MD5"`
 	} `cmd:"" help:"Calculate SHA Hashsums"`
+	Hex struct {
+		ToHex   toHexCmd   `cmd:"" name:"to" help:"Convert to hexadecimal"`
+		FromHex fromHexCmd `cmd:"" name:"from" help:"Convert hexadecimal back"`
+	} `cmd:"" name:"hex" help:"Hexadeicmal converting"`
 	HtPassWD HtPassWDCmd `cmd:"" name:"htpasswd" help:"Create a htpasswd string"`
 	Reverse  reverseCmd  `cmd:"" help:"Reverse the input"`
 	Version  versionCmd  `cmd:"" help:"Show version information"`
@@ -217,5 +221,33 @@ func (c *md5Cmd) Run(globals *Globals) error {
 		return err
 	}
 	printOutput(calculateMD5(in), globals.Trim)
+	return nil
+}
+
+type toHexCmd struct {
+	Formated bool `short:"f" default:"false" help:"Format hexadecimal result with whitespaces"`
+}
+
+func (c *toHexCmd) Run(globals *Globals) error {
+	in, err := readFromSTDIN()
+	if err != nil {
+		return err
+	}
+	printOutput(stringToHex(in, c.Formated), globals.Trim)
+	return nil
+}
+
+type fromHexCmd struct{}
+
+func (c *fromHexCmd) Run(globals *Globals) error {
+	in, err := readFromSTDIN()
+	if err != nil {
+		return err
+	}
+	out, err := hexToString(in)
+	if err != nil {
+		return err
+	}
+	printOutput(out, globals.Trim)
 	return nil
 }

@@ -25,6 +25,7 @@ A tool to work with strings
 
 Flags:
   -h, --help    Show context-sensitive help.
+  -t, --trim    Trim output (for piping)
 
 Commands:
   base64 encode    Encode with base64
@@ -39,6 +40,8 @@ Commands:
   hash sha256      Calculate Sha256
   hash sha512      Calculate Sha512
   hash md5         Calculate MD5
+  hex to           Convert to hexadecimal
+  hex from         Convert hexadecimal back
   htpasswd         Create a htpasswd string
   reverse          Reverse the input
   version          Show version information
