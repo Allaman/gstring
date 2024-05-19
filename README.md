@@ -40,6 +40,7 @@ Commands:
   hash sha256         Calculate Sha256
   hash sha512         Calculate Sha512
   hash md5            Calculate MD5
+  head                Returns the first n lines
   hex to              Convert to hexadecimal
   hex from            Convert hexadecimal back
   lorem words         Words
@@ -48,6 +49,7 @@ Commands:
   htpasswd            Create a htpasswd string
   reverse             Reverse the input
   split               Split a string
+  tail                Returns the last n lines
   url encode          Encode string to valid URL
   url decode          Decode URL to string
   version             Show version information

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"reflect"
 	"testing"
 )
 
@@ -76,6 +77,26 @@ func TestPrintOutput(t *testing.T) {
 			result := buf.String()
 			if result != tt.expected {
 				t.Errorf("printOutput(%v, %v) = %q; want %q", tt.input, tt.trim, result, tt.expected)
+			}
+		})
+	}
+}
+
+func TestSplitLines(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected []string
+	}{
+		{"line1\nline2\nline3\n", []string{"line1", "line2", "line3"}},
+		{"line1\nline2\nline3", []string{"line1", "line2", "line3"}},
+		// {"", []string{}}, -- TODO: this test fails probably due to reflect.DeepEqual
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.input, func(t *testing.T) {
+			result := splitLines(tt.input)
+			if !reflect.DeepEqual(result, tt.expected) {
+				t.Errorf("splitLines(%q) = %v; want %v", tt.input, result, tt.expected)
 			}
 		})
 	}

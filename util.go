@@ -1,9 +1,11 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"io"
 	"os"
+	"strings"
 )
 
 func readFromSTDIN() (string, error) {
@@ -21,4 +23,15 @@ func printOutput(s interface{}, trim bool) {
 	} else {
 		fmt.Println(s)
 	}
+}
+
+func splitLines(input string) []string {
+	var lines []string
+	scanner := bufio.NewScanner(strings.NewReader(input))
+	scanner.Split(bufio.ScanLines)
+	for scanner.Scan() {
+		line := scanner.Text()
+		lines = append(lines, line)
+	}
+	return lines
 }

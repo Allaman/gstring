@@ -30,7 +30,8 @@ type CLI struct {
 		SHA512 sha512Cmd `cmd:"" name:"sha512" help:"Calculate Sha512"`
 		MD5    md5Cmd    `cmd:"" name:"md5" help:"Calculate MD5"`
 	} `cmd:"" help:"Calculate SHA Hashsums"`
-	Hex struct {
+	Head headCmd `cmd:"" help:"Returns the first n lines"`
+	Hex  struct {
 		ToHex   toHexCmd   `cmd:"" name:"to" help:"Convert to hexadecimal"`
 		FromHex fromHexCmd `cmd:"" name:"from" help:"Convert hexadecimal back"`
 	} `cmd:"" name:"hex" help:"Hexadeicmal converting"`
@@ -42,6 +43,7 @@ type CLI struct {
 	HtPassWD HtPassWDCmd `cmd:"" name:"htpasswd" help:"Create a htpasswd string"`
 	Reverse  reverseCmd  `cmd:"" help:"Reverse the input"`
 	Split    splitCmd    `cmd:"" help:"Split a string"`
+	Tail     tailCmd     `cmd:"" help:"Returns the last n lines"`
 	URL      struct {
 		Encode encodeURLCmd `cmd:"" help:"Encode string to valid URL"`
 		Decode decodeURLCmd `cmd:"" help:"Decode URL to string"`
@@ -320,5 +322,31 @@ func (c *splitCmd) Run(globals *Globals) error {
 		return err
 	}
 	printOutput(formatSplittedString(splitString(in, c.Sep)), globals.Trim)
+	return nil
+}
+
+type headCmd struct {
+	Num int `default:"1" short:"n" help:"Number of lines"`
+}
+
+func (c *headCmd) Run(globals *Globals) error {
+	in, err := readFromSTDIN()
+	if err != nil {
+		return err
+	}
+	printOutput(head(in, c.Num), globals.Trim)
+	return nil
+}
+
+type tailCmd struct {
+	Num int `default:"1" short:"n" help:"Number of lines"`
+}
+
+func (c *tailCmd) Run(globals *Globals) error {
+	in, err := readFromSTDIN()
+	if err != nil {
+		return err
+	}
+	printOutput(tail(in, c.Num), globals.Trim)
 	return nil
 }
