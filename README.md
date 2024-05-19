@@ -47,6 +47,7 @@ Commands:
   lorem paragraphs    Paragraphs
   htpasswd            Create a htpasswd string
   reverse             Reverse the input
+  split               Split a string
   url encode          Encode string to valid URL
   url decode          Decode URL to string
   version             Show version information

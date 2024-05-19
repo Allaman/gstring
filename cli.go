@@ -41,6 +41,7 @@ type CLI struct {
 	} `cmd:"" help:"Generate Lorem Ipsum"`
 	HtPassWD HtPassWDCmd `cmd:"" name:"htpasswd" help:"Create a htpasswd string"`
 	Reverse  reverseCmd  `cmd:"" help:"Reverse the input"`
+	Split    splitCmd    `cmd:"" help:"Split a string"`
 	URL      struct {
 		Encode encodeURLCmd `cmd:"" help:"Encode string to valid URL"`
 		Decode decodeURLCmd `cmd:"" help:"Decode URL to string"`
@@ -314,5 +315,17 @@ func (c *loremSentencesCmd) Run(globals *Globals) error {
 func (c *loremParagraphsCmd) Run(globals *Globals) error {
 	lorem := generateLoremIpsum("paragraphs", c.Count)
 	printOutput(lorem, false)
+}
+
+type splitCmd struct {
+	Sep string `default:" " short:"s" help:"Separator to split"`
+}
+
+func (c *splitCmd) Run(globals *Globals) error {
+	in, err := readFromSTDIN()
+	if err != nil {
+		return err
+	}
+	printOutput(formatSplittedString(splitString(in, c.Sep)), globals.Trim)
 	return nil
 }
