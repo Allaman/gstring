@@ -28,25 +28,28 @@ Flags:
   -t, --trim    Trim output (for piping)
 
 Commands:
-  base64 encode    Encode with base64
-  base64 decode    Decode with base64
-  count chars      Count characters
-  count words      Count words
-  case camel       formatCamelCase
-  case lower       format lower
-  case random      ForMat rANdom CaSE
-  case snake       format_snake_case
-  case upper       FORMAT UPPER
-  hash sha256      Calculate Sha256
-  hash sha512      Calculate Sha512
-  hash md5         Calculate MD5
-  hex to           Convert to hexadecimal
-  hex from         Convert hexadecimal back
-  htpasswd         Create a htpasswd string
-  reverse          Reverse the input
-  url encode       Encode string to valid URL
-  url decode       Decode URL to string
-  version          Show version information
+  base64 encode       Encode with base64
+  base64 decode       Decode with base64
+  count chars         Count characters
+  count words         Count words
+  case camel          formatCamelCase
+  case lower          format lower
+  case random         ForMat rANdom CaSE
+  case snake          format_snake_case
+  case upper          FORMAT UPPER
+  hash sha256         Calculate Sha256
+  hash sha512         Calculate Sha512
+  hash md5            Calculate MD5
+  hex to              Convert to hexadecimal
+  hex from            Convert hexadecimal back
+  lorem words         Words
+  lorem sentences     Sentences
+  lorem paragraphs    Paragraphs
+  htpasswd            Create a htpasswd string
+  reverse             Reverse the input
+  url encode          Encode string to valid URL
+  url decode          Decode URL to string
+  version             Show version information
 
 Run "gstring <command> --help" for more information on a command.
 ```
@@ -78,13 +81,14 @@ Most of the commands work with stdin so you have to pipe content, for example:
 
 ```sh
 echo "hello world" | gstring case camel
-gstring sha 256 < main.go
+gstring hash sha256 < main.go # äquivalent to sha256sum main.go
 ```
 
 However, some commands read from named arguments, for example:
 
 ```sh
 gstring htpasswd -u bar -p test
+gstring lorem sentences -c 20
 ```
 
 ## What about the name?
