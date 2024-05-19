@@ -48,6 +48,7 @@ Commands:
   lorem paragraphs    Paragraphs
   htpasswd            Create a htpasswd string
   reverse             Reverse the input
+  rng                 Random number generator
   split               Split a string
   tail                Returns the last n lines
   url encode          Encode string to valid URL
@@ -92,6 +93,7 @@ However, some commands read from named arguments, for example:
 ```sh
 gstring htpasswd -u bar -p test
 gstring lorem sentences -c 20
+gstring rng -s 1 -e 100 -c 10 -d ";"
 ```
 
 ## What about the name?

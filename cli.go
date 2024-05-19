@@ -42,6 +42,7 @@ type CLI struct {
 	} `cmd:"" help:"Generate Lorem Ipsum"`
 	HtPassWD HtPassWDCmd `cmd:"" name:"htpasswd" help:"Create a htpasswd string"`
 	Reverse  reverseCmd  `cmd:"" help:"Reverse the input"`
+	Rng      rngCmd      `cmd:"" help:"Random number generator"`
 	Split    splitCmd    `cmd:"" help:"Split a string"`
 	Tail     tailCmd     `cmd:"" help:"Returns the last n lines"`
 	URL      struct {
@@ -348,5 +349,21 @@ func (c *tailCmd) Run(globals *Globals) error {
 		return err
 	}
 	printOutput(tail(in, c.Num), globals.Trim)
+	return nil
+}
+
+type rngCmd struct {
+	Start     int    `default:"0" short:"s" help:"Min RNG"`
+	End       int    `default:"1" short:"e" help:"Max RNG"`
+	Count     int    `default:"1" short:"c" help:"Number of generated RNGs"`
+	Delimiter string `default:" " short:"d" help:"Output delimiter"`
+}
+
+func (c *rngCmd) Run(globals *Globals) error {
+	rngs, err := pseudoRandomGenerator(c.Start, c.End, c.Count, c.Delimiter)
+	if err != nil {
+		return err
+	}
+	printOutput(rngs, globals.Trim)
 	return nil
 }
