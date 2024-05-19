@@ -294,19 +294,20 @@ type loremParagraphsCmd struct {
 
 func (c *loremWordsCmd) Run(globals *Globals) error {
 	lorem := generateLoremIpsum("words", c.Count)
-	printOutput(lorem, false)
+	printOutput(lorem, globals.Trim)
 	return nil
 }
 
 func (c *loremSentencesCmd) Run(globals *Globals) error {
 	lorem := generateLoremIpsum("sentences", c.Count)
-	printOutput(lorem, false)
+	printOutput(lorem, globals.Trim)
 	return nil
 }
 
 func (c *loremParagraphsCmd) Run(globals *Globals) error {
 	lorem := generateLoremIpsum("paragraphs", c.Count)
-	printOutput(lorem, false)
+	printOutput(lorem, globals.Trim)
+	return nil
 }
 
 type splitCmd struct {
