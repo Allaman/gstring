@@ -82,7 +82,7 @@ Most of the commands work with stdin so you have to pipe content, for example:
 
 ```sh
 echo "hello world" | gstring case camel
-gstring hash sha256 < main.go # äquivalent to sha256sum main.go
+gstring hash sha256 < main.go # equivalent to sha256sum main.go
 ```
 
 However, some commands read from named arguments, for example:
