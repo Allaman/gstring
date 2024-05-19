@@ -20,3 +20,17 @@ func pseudoRandomGenerator(start, end, n int, delimiter string) (string, error) 
 	}
 	return strings.Trim(strings.Join(strings.Fields(fmt.Sprint(rngs)), delimiter), "[]"), nil
 }
+
+const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+func generateRandomPasswords(length, count int) []string {
+	passwords := make([]string, count)
+	for j := 0; j < count; j++ {
+		password := make([]byte, length)
+		for i := range password {
+			password[i] = charset[rand.Intn(len(charset))]
+		}
+		passwords[j] = string(password)
+	}
+	return passwords
+}

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 type Globals struct {
@@ -41,6 +42,7 @@ type CLI struct {
 		Paragraphs loremParagraphsCmd `cmd:"" help:"Paragraphs"`
 	} `cmd:"" help:"Generate Lorem Ipsum"`
 	HtPassWD HtPassWDCmd `cmd:"" name:"htpasswd" help:"Create a htpasswd string"`
+	PwGen    pwGenCmd    `cmd:"" name:"pwgen" help:"Password generator (letters and numbers)"`
 	Reverse  reverseCmd  `cmd:"" help:"Reverse the input"`
 	Rng      rngCmd      `cmd:"" help:"Random number generator"`
 	Split    splitCmd    `cmd:"" help:"Split a string"`
@@ -365,5 +367,17 @@ func (c *rngCmd) Run(globals *Globals) error {
 		return err
 	}
 	printOutput(rngs, globals.Trim)
+	return nil
+}
+
+type pwGenCmd struct {
+	Length    int    `default:"10" short:"n" help:"Length of password"`
+	Count     int    `default:"1" short:"c" help:"Number of passwords to generate"`
+	Delimiter string `default:"\n" short:"d" help:"Output delimiter"`
+}
+
+func (c *pwGenCmd) Run(globals *Globals) error {
+	passwords := strings.Join(generateRandomPasswords(c.Length, c.Count), c.Delimiter)
+	printOutput(passwords, globals.Trim)
 	return nil
 }

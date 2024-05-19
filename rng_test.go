@@ -49,3 +49,26 @@ func TestPseudoRandomGenerator(t *testing.T) {
 		})
 	}
 }
+
+func TestGenerateRandomPasswords(t *testing.T) {
+	length := 10
+	count := 5
+	passwords := generateRandomPasswords(length, count)
+	if len(passwords) != count {
+		t.Errorf("expected to generate %d passwords, got %d", count, len(passwords))
+	}
+
+	for _, password := range passwords {
+		t.Run(password, func(t *testing.T) {
+			if len(password) != length {
+				t.Errorf("expected password length %d, got %d", length, len(password))
+			}
+
+			for _, char := range password {
+				if (char < 'a' || char > 'z') && (char < 'A' || char > 'Z') && (char < '0' || char > '9') {
+					t.Errorf("unexpected character in password: %c", char)
+				}
+			}
+		})
+	}
+}
