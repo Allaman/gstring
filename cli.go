@@ -112,28 +112,24 @@ type encodeBase64Cmd struct{}
 type decodeBase64Cmd struct{}
 
 func (c *encodeBase64Cmd) Run(globals *Globals) error {
-	return func() error {
-		in, err := readFromSTDIN()
-		if err != nil {
-			return err
-		}
-		printOutput(encodeBase64(in), globals.Trim)
-		return nil
-	}()
+	in, err := readFromSTDIN()
+	if err != nil {
+		return err
+	}
+	printOutput(encodeBase64(in), globals.Trim)
+	return nil
 }
 func (c *decodeBase64Cmd) Run(globals *Globals) error {
-	return func() error {
-		in, err := readFromSTDIN()
-		if err != nil {
-			return err
-		}
-		decoded, err := decodeBase64(in)
-		if err != nil {
-			return err
-		}
-		printOutput(decoded, globals.Trim)
-		return nil
-	}()
+	in, err := readFromSTDIN()
+	if err != nil {
+		return err
+	}
+	decoded, err := decodeBase64(in)
+	if err != nil {
+		return err
+	}
+	printOutput(decoded, globals.Trim)
+	return nil
 }
 
 type camelCaseCmd struct{}
@@ -266,28 +262,24 @@ type encodeURLCmd struct{}
 type decodeURLCmd struct{}
 
 func (c *encodeURLCmd) Run(globals *Globals) error {
-	return func() error {
-		in, err := readFromSTDIN()
-		if err != nil {
-			return err
-		}
-		printOutput(encodeURL(in), globals.Trim)
-		return nil
-	}()
+	in, err := readFromSTDIN()
+	if err != nil {
+		return err
+	}
+	printOutput(encodeURL(in), globals.Trim)
+	return nil
 }
 func (c *decodeURLCmd) Run(globals *Globals) error {
-	return func() error {
-		in, err := readFromSTDIN()
-		if err != nil {
-			return err
-		}
-		decoded, err := decodeURL(in)
-		if err != nil {
-			return err
-		}
-		printOutput(decoded, globals.Trim)
-		return nil
-	}()
+	in, err := readFromSTDIN()
+	if err != nil {
+		return err
+	}
+	decoded, err := decodeURL(in)
+	if err != nil {
+		return err
+	}
+	printOutput(decoded, globals.Trim)
+	return nil
 }
 
 type loremWordsCmd struct {
