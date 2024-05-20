@@ -37,9 +37,10 @@ type CLI struct {
 		FromHex fromHexCmd `cmd:"" name:"from" help:"Convert hexadecimal back"`
 	} `cmd:"" name:"hex" help:"Hexadeicmal converting"`
 	Lorem struct {
-		Words      loremWordsCmd      `cmd:"" help:"Words"`
-		Sentences  loremSentencesCmd  `cmd:"" help:"Sentences"`
+		Bytes      loremBytesCmd      `cmd:"" help:"Bytes"`
 		Paragraphs loremParagraphsCmd `cmd:"" help:"Paragraphs"`
+		Sentences  loremSentencesCmd  `cmd:"" help:"Sentences"`
+		Words      loremWordsCmd      `cmd:"" help:"Words"`
 	} `cmd:"" help:"Generate Lorem Ipsum"`
 	HtPassWD HtPassWDCmd `cmd:"" name:"htpasswd" help:"Create a htpasswd string"`
 	PwGen    pwGenCmd    `cmd:"" name:"pwgen" help:"Password generator (letters and numbers)"`
@@ -287,6 +288,9 @@ func (c *decodeURLCmd) Run(globals *Globals) error {
 	return nil
 }
 
+type loremBytesCmd struct {
+	Count int `default:"5" short:"c" help:"Number of bytes"`
+}
 type loremWordsCmd struct {
 	Count int `default:"5" short:"c" help:"Number of words"`
 }
@@ -295,6 +299,12 @@ type loremSentencesCmd struct {
 }
 type loremParagraphsCmd struct {
 	Count int `default:"1" short:"c" help:"Number of Paragraphs"`
+}
+
+func (c *loremBytesCmd) Run(globals *Globals) error {
+	lorem := generateLoremIpsum("bytes", c.Count)
+	printOutput(lorem, globals.Trim)
+	return nil
 }
 
 func (c *loremWordsCmd) Run(globals *Globals) error {

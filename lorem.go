@@ -11,6 +11,8 @@ var loremIpsumSentences = strings.Split(loremIpsum, ".")
 
 func generateLoremIpsum(lengthType string, count int) string {
 	switch lengthType {
+	case "bytes":
+		return generateBytes(count)
 	case "words":
 		return generateWords(count)
 	case "sentences":
@@ -18,8 +20,25 @@ func generateLoremIpsum(lengthType string, count int) string {
 	case "paragraphs":
 		return generateParagraphs(count)
 	default:
-		return "Invalid length type. Please specify 'words', 'sentences', or 'paragraphs'."
+		return "Invalid length type. Please specify 'bytes', 'words', 'sentences', or 'paragraphs'."
 	}
+}
+
+func generateBytes(count int) string {
+	var bytes strings.Builder
+	index := 0
+	if count == 0 {
+		return ""
+	}
+	for bytes.Len() <= count-1 {
+		bytes.WriteString(string(loremIpsum[index%len(loremIpsum)]))
+		// Add space at the end before starting from "Lorem ... " againg
+		if index == len(loremIpsum)-1 {
+			bytes.WriteString(" ")
+		}
+		index++
+	}
+	return bytes.String()
 }
 
 func generateWords(count int) string {

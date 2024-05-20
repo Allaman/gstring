@@ -43,9 +43,10 @@ Commands:
   head                Returns the first n lines
   hex to              Convert to hexadecimal
   hex from            Convert hexadecimal back
-  lorem words         Words
-  lorem sentences     Sentences
+  lorem bytes         Bytes
   lorem paragraphs    Paragraphs
+  lorem sentences     Sentences
+  lorem words         Words
   htpasswd            Create a htpasswd string
   pwgen               Password generator (letters and numbers)
   reverse             Reverse the input
