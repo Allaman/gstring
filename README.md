@@ -52,6 +52,7 @@ Commands:
   pwgen               Password generator (letters and numbers)
   reverse             Reverse the input
   rng                 Random number generator
+  sort                Sort the input by line
   split               Split a string
   tail                Returns the last n lines
   url encode          Encode string to valid URL

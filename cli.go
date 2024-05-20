@@ -47,6 +47,7 @@ type CLI struct {
 	PwGen    pwGenCmd    `cmd:"" name:"pwgen" help:"Password generator (letters and numbers)"`
 	Reverse  reverseCmd  `cmd:"" help:"Reverse the input"`
 	Rng      rngCmd      `cmd:"" help:"Random number generator"`
+	Sort     sortCmd     `cmd:"" help:"Sort the input by line"`
 	Split    splitCmd    `cmd:"" help:"Split a string"`
 	Tail     tailCmd     `cmd:"" help:"Returns the last n lines"`
 	URL      struct {
@@ -403,5 +404,20 @@ type pwGenCmd struct {
 func (c *pwGenCmd) Run(globals *Globals) error {
 	passwords := strings.Join(generateRandomPasswords(c.Length, c.Count), c.Delimiter)
 	printOutput(passwords, globals.Trim)
+	return nil
+}
+
+type sortCmd struct {
+	Desc             bool `default:"false" short:"d" help:"Descending"`
+	IgnoreEmptyLines bool `default:"true" help:"Ignore empty lines"`
+	Unique           bool `default:"false" short:"u" help:"Only unique lines"`
+}
+
+func (c *sortCmd) Run(globals *Globals) error {
+	in, err := readFromSTDIN()
+	if err != nil {
+		return err
+	}
+	printOutput(sortLines(in, c.Desc, c.IgnoreEmptyLines, c.Unique), globals.Trim)
 	return nil
 }
