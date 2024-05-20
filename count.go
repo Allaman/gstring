@@ -1,12 +1,18 @@
 package main
 
 import (
+	"strconv"
 	"strings"
 	"unicode/utf8"
+
+	"github.com/dustin/go-humanize"
 )
 
-func countBytes(s string) int {
-	return len(s)
+func countBytes(s string, human bool) string {
+	if human {
+		return humanize.Bytes(uint64(len(s)))
+	}
+	return strconv.Itoa(len(s))
 }
 
 func countChars(str string, chars ...rune) int {

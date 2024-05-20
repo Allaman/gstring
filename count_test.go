@@ -7,20 +7,22 @@ import (
 func TestCountBytes(t *testing.T) {
 	tests := []struct {
 		input    string
-		expected int
+		format   bool
+		expected string
 	}{
-		{"Hello, World!", 13},
-		{"Hello, 世界", 13},
-		{"", 0},
-		{"abc", 3},
-		{"こんにちは", 15}, // 5 characters, 3 bytes each in UTF-8
+		{"Hello, World!", false, "13"},
+		{"Hello, 世界", false, "13"},
+		{"", false, "0"},
+		{"abc", false, "3"},
+		{"こんにちは", false, "15"}, // 5 characters, 3 bytes each in UTF-8
+		{"Hello, World!", true, "13 B"},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.input, func(t *testing.T) {
-			result := countBytes(tt.input)
+			result := countBytes(tt.input, tt.format)
 			if result != tt.expected {
-				t.Errorf("countBytes(%q) = %d; want %d", tt.input, result, tt.expected)
+				t.Errorf("countBytes(%q) = %s; want %s", tt.input, result, tt.expected)
 			}
 		})
 	}

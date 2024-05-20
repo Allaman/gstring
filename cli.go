@@ -68,7 +68,9 @@ func (c *versionCmd) Run() error {
 	return nil
 }
 
-type countBytesCmd struct{}
+type countBytesCmd struct {
+	Format bool `optional:"" default:"false" short:"f" help:"Human readable format"`
+}
 
 type countCharsCmd struct {
 	Char string `optional:"" short:"c" help:"Count only a specific character"`
@@ -83,7 +85,7 @@ func (c *countBytesCmd) Run(globals *Globals) error {
 	if err != nil {
 		return err
 	}
-	printOutput(countBytes(in), globals.Trim)
+	printOutput(countBytes(in, c.Format), globals.Trim)
 	return nil
 }
 
