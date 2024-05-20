@@ -55,6 +55,7 @@ Commands:
   sort                Sort the input by line
   split               Split a string
   tail                Returns the last n lines
+  time from-unix      Convert from Unix time to normal time
   url encode          Encode string to valid URL
   url decode          Decode URL to string
   version             Show version information
@@ -90,6 +91,7 @@ Most of the commands work with stdin so you have to pipe content, for example:
 ```sh
 echo "hello world" | gstring case camel
 gstring hash sha256 < main.go # equivalent to sha256sum main.go
+date +%s | gstring time from-unix -f "2006-01-02 15:04"
 ```
 
 However, some commands read from named arguments, for example:

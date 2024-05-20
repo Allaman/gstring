@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -50,7 +51,10 @@ type CLI struct {
 	Sort     sortCmd     `cmd:"" help:"Sort the input by line"`
 	Split    splitCmd    `cmd:"" help:"Split a string"`
 	Tail     tailCmd     `cmd:"" help:"Returns the last n lines"`
-	URL      struct {
+	Time     struct {
+		FromUnixTime fromUnixTimeCmd `cmd:"" name:"from-unix" help:"Convert from Unix time to normal time"`
+	} `cmd:"" help:"Time conversions"`
+	URL struct {
 		Encode encodeURLCmd `cmd:"" help:"Encode string to valid URL"`
 		Decode decodeURLCmd `cmd:"" help:"Decode URL to string"`
 	} `cmd:"" help:"URL Encoding and Decoding"`
@@ -419,5 +423,26 @@ func (c *sortCmd) Run(globals *Globals) error {
 		return err
 	}
 	printOutput(sortLines(in, c.Desc, c.IgnoreEmptyLines, c.Unique), globals.Trim)
+	return nil
+}
+
+type fromUnixTimeCmd struct {
+	Format string `default:"2006-01-02 15:04:05.000000000" short:"f" help:"Time format as Go reference time"`
+}
+
+func (c *fromUnixTimeCmd) Run(globals *Globals) error {
+	in, err := readFromSTDIN()
+	if err != nil {
+		return err
+	}
+	timestamp, err := strconv.ParseInt(strings.TrimSpace(in), 10, 64)
+	if err != nil {
+		return err
+	}
+	t, err := convertUnixTimestamp(timestamp, c.Format)
+	if err != nil {
+		return err
+	}
+	printOutput(t, globals.Trim)
 	return nil
 }
