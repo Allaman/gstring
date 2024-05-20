@@ -30,6 +30,7 @@ Flags:
 Commands:
   base64 encode       Encode with base64
   base64 decode       Decode with base64
+  count bytes         Count bytes
   count chars         Count characters
   count words         Count words
   case camel          formatCamelCase
