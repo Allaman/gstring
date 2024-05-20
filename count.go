@@ -5,6 +5,10 @@ import (
 	"unicode/utf8"
 )
 
+func countBytes(s string) int {
+	return len(s)
+}
+
 func countChars(str string, chars ...rune) int {
 	if len(chars) > 0 {
 		char := chars[0]

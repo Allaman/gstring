@@ -16,6 +16,7 @@ type CLI struct {
 		Decode decodeBase64Cmd `cmd:"" help:"Decode with base64"`
 	} `cmd:"" name:"base64" help:"Base64 Encoding and Decoding"`
 	Count struct {
+		Bytes countBytesCmd `cmd:"" help:"Count bytes"`
 		Chars countCharsCmd `cmd:"" help:"Count characters"`
 		Words countWordsCmd `cmd:"" help:"Count words"`
 	} `cmd:"" help:"Count various things"`
@@ -67,12 +68,23 @@ func (c *versionCmd) Run() error {
 	return nil
 }
 
+type countBytesCmd struct{}
+
 type countCharsCmd struct {
 	Char string `optional:"" short:"c" help:"Count only a specific character"`
 }
 
 type countWordsCmd struct {
 	Word string `optional:"" short:"w" help:"Count only a specific word"`
+}
+
+func (c *countBytesCmd) Run(globals *Globals) error {
+	in, err := readFromSTDIN()
+	if err != nil {
+		return err
+	}
+	printOutput(countBytes(in), globals.Trim)
+	return nil
 }
 
 func (c *countCharsCmd) Run(globals *Globals) error {
@@ -85,9 +97,9 @@ func (c *countCharsCmd) Run(globals *Globals) error {
 		if len(runes) > 1 {
 			return fmt.Errorf("provide only one character")
 		}
-		printOutput((countChars(in, rune(runes[0]))), globals.Trim)
+		printOutput(countChars(in, rune(runes[0])), globals.Trim)
 	} else {
-		printOutput((countChars(in)), globals.Trim)
+		printOutput(countChars(in), globals.Trim)
 	}
 	return nil
 }
