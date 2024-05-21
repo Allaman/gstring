@@ -13,36 +13,36 @@ type Globals struct {
 type CLI struct {
 	Globals
 	Base64 struct {
-		Encode encodeBase64Cmd `cmd:"" help:"Encode with base64"`
-		Decode decodeBase64Cmd `cmd:"" help:"Decode with base64"`
+		Encode encodeBase64Cmd `cmd:"" help:"Encodes with base64"`
+		Decode decodeBase64Cmd `cmd:"" help:"Decodes with base64"`
 	} `cmd:"" name:"base64" help:"Base64 Encoding and Decoding"`
 	Count struct {
-		Bytes countBytesCmd `cmd:"" help:"Count bytes"`
-		Chars countCharsCmd `cmd:"" help:"Count characters"`
-		Words countWordsCmd `cmd:"" help:"Count words"`
+		Bytes countBytesCmd `cmd:"" help:"Counts bytes"`
+		Chars countCharsCmd `cmd:"" help:"Counts characters"`
+		Words countWordsCmd `cmd:"" help:"Counts words"`
 	} `cmd:"" help:"Count various things"`
 	Case struct {
-		Camel  camelCaseCmd  `cmd:"" help:"formatCamelCase"`
-		Lower  lowerCaseCmd  `cmd:"" help:"format lower"`
-		Random randomCaseCmd `cmd:"" help:"ForMat rANdom CaSE"`
-		Snake  snakeCaseCmd  `cmd:"" help:"format_snake_case"`
-		Upper  upperCaseCmd  `cmd:"" help:"FORMAT UPPER"`
+		Camel  camelCaseCmd  `cmd:"" help:"formatsCamelCase"`
+		Lower  lowerCaseCmd  `cmd:"" help:"formats lower"`
+		Random randomCaseCmd `cmd:"" help:"ForMats rANdom CaSE"`
+		Snake  snakeCaseCmd  `cmd:"" help:"formats_snake_case"`
+		Upper  upperCaseCmd  `cmd:"" help:"FORMATS UPPER"`
 	} `cmd:"" help:"Format various cases"`
 	Hash struct {
-		SHA256 sha256Cmd `cmd:"" name:"sha256" help:"Calculate Sha256"`
-		SHA512 sha512Cmd `cmd:"" name:"sha512" help:"Calculate Sha512"`
-		MD5    md5Cmd    `cmd:"" name:"md5" help:"Calculate MD5"`
+		SHA256 sha256Cmd `cmd:"" name:"sha256" help:"Calculates Sha256"`
+		SHA512 sha512Cmd `cmd:"" name:"sha512" help:"Calculates Sha512"`
+		MD5    md5Cmd    `cmd:"" name:"md5" help:"Calculates MD5"`
 	} `cmd:"" help:"Calculate SHA Hashsums"`
 	Head headCmd `cmd:"" help:"Returns the first n lines"`
 	Hex  struct {
-		ToHex   toHexCmd   `cmd:"" name:"to" help:"Convert to hexadecimal"`
-		FromHex fromHexCmd `cmd:"" name:"from" help:"Convert hexadecimal back"`
+		ToHex   toHexCmd   `cmd:"" name:"to" help:"Converts to hexadecimal"`
+		FromHex fromHexCmd `cmd:"" name:"from" help:"Converts hexadecimal back"`
 	} `cmd:"" name:"hex" help:"Hexadeicmal converting"`
 	Lorem struct {
-		Bytes      loremBytesCmd      `cmd:"" help:"Bytes"`
-		Paragraphs loremParagraphsCmd `cmd:"" help:"Paragraphs"`
-		Sentences  loremSentencesCmd  `cmd:"" help:"Sentences"`
-		Words      loremWordsCmd      `cmd:"" help:"Words"`
+		Bytes      loremBytesCmd      `cmd:"" help:"Returns Bytes"`
+		Paragraphs loremParagraphsCmd `cmd:"" help:"Returns Paragraphs"`
+		Sentences  loremSentencesCmd  `cmd:"" help:"Returns Sentences"`
+		Words      loremWordsCmd      `cmd:"" help:"Returns Words"`
 	} `cmd:"" help:"Generate Lorem Ipsum"`
 	HtPassWD HtPassWDCmd `cmd:"" name:"htpasswd" help:"Create a htpasswd string"`
 	PwGen    pwGenCmd    `cmd:"" name:"pwgen" help:"Password generator (letters and numbers)"`
@@ -51,15 +51,15 @@ type CLI struct {
 	Sort     sortCmd     `cmd:"" help:"Sort the input by line"`
 	Split    splitCmd    `cmd:"" help:"Split a string"`
 	Tail     tailCmd     `cmd:"" help:"Returns the last n lines"`
-	Time     struct {
-		FromUnixTime fromUnixTimeCmd `cmd:"" name:"from-unix" help:"Convert from Unix time to normal time"`
-		GetUnixTime  getUnixTimeCmd  `cmd:"" name:"get-unix" help:"Get Unix time"`
+	Time             struct {
+		FromUnixTime fromUnixTimeCmd `cmd:"" name:"from-unix" help:"Converts from Unix time to normal time"`
+		GetUnixTime  getUnixTimeCmd  `cmd:"" name:"get-unix" help:"Returns Unix time"`
 	} `cmd:"" help:"Time conversions"`
 	URL struct {
-		Encode encodeURLCmd `cmd:"" help:"Encode string to valid URL"`
-		Decode decodeURLCmd `cmd:"" help:"Decode URL to string"`
+		Encode encodeURLCmd `cmd:"" help:"Encodes string to valid URL"`
+		Decode decodeURLCmd `cmd:"" help:"Decodes URL to string"`
 	} `cmd:"" help:"URL Encoding and Decoding"`
-	Version versionCmd `cmd:"" help:"Show version information"`
+	Version versionCmd `cmd:"" help:"Shows version information"`
 }
 
 type HtPassWDCmd struct {

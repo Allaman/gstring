@@ -28,38 +28,39 @@ Flags:
   -t, --trim    Trim output (for piping)
 
 Commands:
-  base64 encode       Encode with base64
-  base64 decode       Decode with base64
-  count bytes         Count bytes
-  count chars         Count characters
-  count words         Count words
-  case camel          formatCamelCase
-  case lower          format lower
-  case random         ForMat rANdom CaSE
-  case snake          format_snake_case
-  case upper          FORMAT UPPER
-  hash sha256         Calculate Sha256
-  hash sha512         Calculate Sha512
-  hash md5            Calculate MD5
-  head                Returns the first n lines
-  hex to              Convert to hexadecimal
-  hex from            Convert hexadecimal back
-  lorem bytes         Bytes
-  lorem paragraphs    Paragraphs
-  lorem sentences     Sentences
-  lorem words         Words
-  htpasswd            Create a htpasswd string
-  pwgen               Password generator (letters and numbers)
-  reverse             Reverse the input
-  rng                 Random number generator
-  sort                Sort the input by line
-  split               Split a string
-  tail                Returns the last n lines
-  time from-unix      Convert from Unix time to normal time
-  time get-unix       Get Unix time
-  url encode          Encode string to valid URL
-  url decode          Decode URL to string
-  version             Show version information
+  base64 encode        Encode with base64
+  base64 decode        Decode with base64
+  count bytes          Count bytes
+  count chars          Count characters
+  count words          Count words
+  case camel           formatCamelCase
+  case lower           format lower
+  case random          ForMat rANdom CaSE
+  case snake           format_snake_case
+  case upper           FORMAT UPPER
+  hash sha256          Calculate Sha256
+  hash sha512          Calculate Sha512
+  hash md5             Calculate MD5
+  head                 Returns the first n lines
+  hex to               Convert to hexadecimal
+  hex from             Convert hexadecimal back
+  lorem bytes          Bytes
+  lorem paragraphs     Paragraphs
+  lorem sentences      Sentences
+  lorem words          Words
+  htpasswd             Create a htpasswd string
+  pwgen                Password generator (letters and numbers)
+  remove-whitespace    Removes whitespace
+  reverse              Reverse the input
+  rng                  Random number generator
+  sort                 Sort the input by line
+  split                Split a string
+  tail                 Returns the last n lines
+  time from-unix       Convert from Unix time to normal time
+  time get-unix        Get Unix time
+  url encode           Encode string to valid URL
+  url decode           Decode URL to string
+  version              Show version information
 
 Run "gstring <command> --help" for more information on a command.
 ```
