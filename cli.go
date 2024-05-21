@@ -45,6 +45,7 @@ type CLI struct {
 		Words      loremWordsCmd      `cmd:"" help:"Returns Words"`
 	} `cmd:"" help:"Generate Lorem Ipsum"`
 	HtPassWD         HtPassWDCmd         `cmd:"" name:"htpasswd" help:"Create a htpasswd string"`
+	Permissions      permissionsCmd      `cmd:"" help:"Parses Unix permissions"`
 	PwGen            pwGenCmd            `cmd:"" name:"pwgen" help:"Password generator (letters and numbers)"`
 	RemoveWhitespace removeWhitespaceCmd `cmd:"" help:"Removes whitespace"`
 	Reverse          reverseCmd          `cmd:"" help:"Reverses the input"`
@@ -472,6 +473,19 @@ func (c *removeWhitespaceCmd) Run(globals *Globals) error {
 		return err
 	}
 	t := removeWhitespace(in, c.Spaces, c.Tabs, c.CR, c.LE, c.EmptyLines)
+	printOutput(t, globals.Trim)
+	return nil
+}
+
+type permissionsCmd struct {
+	Permission string `short:"p" help:"Permission in octal format (both 3 and 4 digits)"`
+}
+
+func (c *permissionsCmd) Run(globals *Globals) error {
+	t, err := parseUnixPermissions(c.Permission)
+	if err != nil {
+		return err
+	}
 	printOutput(t, globals.Trim)
 	return nil
 }

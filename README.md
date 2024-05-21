@@ -49,6 +49,7 @@ Commands:
   lorem sentences      Returns Sentences
   lorem words          Returns Words
   htpasswd             Create a htpasswd string
+  permissions          Parses Unix permissions
   pwgen                Password generator (letters and numbers)
   remove-whitespace    Removes whitespace
   reverse              Reverses the input
@@ -103,6 +104,7 @@ gstring htpasswd -u bar -p test
 gstring lorem sentences -c 20
 gstring rng -s 1 -e 100 -c 10 -d ";"
 gstring pwgen -n 20 -c 10 -d ";"
+gstring permissions -p 3755
 ```
 
 ## What about the name?
