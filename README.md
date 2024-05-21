@@ -28,39 +28,39 @@ Flags:
   -t, --trim    Trim output (for piping)
 
 Commands:
-  base64 encode        Encode with base64
-  base64 decode        Decode with base64
-  count bytes          Count bytes
-  count chars          Count characters
-  count words          Count words
-  case camel           formatCamelCase
-  case lower           format lower
-  case random          ForMat rANdom CaSE
-  case snake           format_snake_case
-  case upper           FORMAT UPPER
-  hash sha256          Calculate Sha256
-  hash sha512          Calculate Sha512
-  hash md5             Calculate MD5
+  base64 encode        Encodes with base64
+  base64 decode        Decodes with base64
+  count bytes          Counts bytes
+  count chars          Counts characters
+  count words          Counts words
+  case camel           formatsCamelCase
+  case lower           formats lower
+  case random          ForMats rANdom CaSE
+  case snake           formats_snake_case
+  case upper           FORMATS UPPER
+  hash sha256          Calculates Sha256
+  hash sha512          Calculates Sha512
+  hash md5             Calculates MD5
   head                 Returns the first n lines
-  hex to               Convert to hexadecimal
-  hex from             Convert hexadecimal back
-  lorem bytes          Bytes
-  lorem paragraphs     Paragraphs
-  lorem sentences      Sentences
-  lorem words          Words
+  hex to               Converts to hexadecimal
+  hex from             Converts hexadecimal back
+  lorem bytes          Returns Bytes
+  lorem paragraphs     Returns Paragraphs
+  lorem sentences      Returns Sentences
+  lorem words          Returns Words
   htpasswd             Create a htpasswd string
   pwgen                Password generator (letters and numbers)
   remove-whitespace    Removes whitespace
-  reverse              Reverse the input
+  reverse              Reverses the input
   rng                  Random number generator
-  sort                 Sort the input by line
-  split                Split a string
+  sort                 Sorts the input by line
+  split                Splits a string
   tail                 Returns the last n lines
-  time from-unix       Convert from Unix time to normal time
-  time get-unix        Get Unix time
-  url encode           Encode string to valid URL
-  url decode           Decode URL to string
-  version              Show version information
+  time from-unix       Converts from Unix time to normal time
+  time get-unix        Returns Unix time
+  url encode           Encodes string to valid URL
+  url decode           Decodes URL to string
+  version              Shows version information
 
 Run "gstring <command> --help" for more information on a command.
 ```
