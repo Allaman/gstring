@@ -56,6 +56,7 @@ Commands:
   split               Split a string
   tail                Returns the last n lines
   time from-unix      Convert from Unix time to normal time
+  time get-unix       Get Unix time
   url encode          Encode string to valid URL
   url decode          Decode URL to string
   version             Show version information

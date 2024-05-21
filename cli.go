@@ -53,6 +53,7 @@ type CLI struct {
 	Tail     tailCmd     `cmd:"" help:"Returns the last n lines"`
 	Time     struct {
 		FromUnixTime fromUnixTimeCmd `cmd:"" name:"from-unix" help:"Convert from Unix time to normal time"`
+		GetUnixTime  getUnixTimeCmd  `cmd:"" name:"get-unix" help:"Get Unix time"`
 	} `cmd:"" help:"Time conversions"`
 	URL struct {
 		Encode encodeURLCmd `cmd:"" help:"Encode string to valid URL"`
@@ -443,6 +444,15 @@ func (c *fromUnixTimeCmd) Run(globals *Globals) error {
 	if err != nil {
 		return err
 	}
+	printOutput(t, globals.Trim)
+	return nil
+}
+
+type getUnixTimeCmd struct {
+}
+
+func (c *getUnixTimeCmd) Run(globals *Globals) error {
+	t := unixTimestamp()
 	printOutput(t, globals.Trim)
 	return nil
 }

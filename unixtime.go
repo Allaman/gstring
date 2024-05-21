@@ -28,3 +28,9 @@ func convertUnixTimestamp(timestamp int64, format string) (string, error) {
 
 	return t.Format(format), nil
 }
+
+func unixTimestamp() int64 {
+	now := time.Now()
+	t := now.Unix()
+	return t
+}

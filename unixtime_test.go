@@ -2,6 +2,7 @@ package main
 
 import (
 	"testing"
+	"time"
 )
 
 func TestConvertUnixTimestamp(t *testing.T) {
@@ -34,4 +35,18 @@ func TestConvertUnixTimestampInvalid(t *testing.T) {
 	if err == nil {
 		t.Error("expected error for invalid timestamp, got nil")
 	}
+}
+func TestUnixTimestamp(t *testing.T) {
+	start := time.Now().Unix()
+
+	result := unixTimestamp()
+
+	end := time.Now().Unix()
+
+	// Check if the result falls within the expected range
+	t.Run("", func(t *testing.T) {
+		if result < start || result > end {
+			t.Errorf("Expected timestamp to be between %d and %d, but got %d", start, end, result)
+		}
+	})
 }
