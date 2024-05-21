@@ -44,13 +44,14 @@ type CLI struct {
 		Sentences  loremSentencesCmd  `cmd:"" help:"Returns Sentences"`
 		Words      loremWordsCmd      `cmd:"" help:"Returns Words"`
 	} `cmd:"" help:"Generate Lorem Ipsum"`
-	HtPassWD HtPassWDCmd `cmd:"" name:"htpasswd" help:"Create a htpasswd string"`
-	PwGen    pwGenCmd    `cmd:"" name:"pwgen" help:"Password generator (letters and numbers)"`
-	Reverse  reverseCmd  `cmd:"" help:"Reverse the input"`
-	Rng      rngCmd      `cmd:"" help:"Random number generator"`
-	Sort     sortCmd     `cmd:"" help:"Sort the input by line"`
-	Split    splitCmd    `cmd:"" help:"Split a string"`
-	Tail     tailCmd     `cmd:"" help:"Returns the last n lines"`
+	HtPassWD         HtPassWDCmd         `cmd:"" name:"htpasswd" help:"Create a htpasswd string"`
+	PwGen            pwGenCmd            `cmd:"" name:"pwgen" help:"Password generator (letters and numbers)"`
+	RemoveWhitespace removeWhitespaceCmd `cmd:"" help:"Removes whitespace"`
+	Reverse          reverseCmd          `cmd:"" help:"Reverses the input"`
+	Rng              rngCmd              `cmd:"" help:"Random number generator"`
+	Sort             sortCmd             `cmd:"" help:"Sorts the input by line"`
+	Split            splitCmd            `cmd:"" help:"Splits a string"`
+	Tail             tailCmd             `cmd:"" help:"Returns the last n lines"`
 	Time             struct {
 		FromUnixTime fromUnixTimeCmd `cmd:"" name:"from-unix" help:"Converts from Unix time to normal time"`
 		GetUnixTime  getUnixTimeCmd  `cmd:"" name:"get-unix" help:"Returns Unix time"`
@@ -453,6 +454,24 @@ type getUnixTimeCmd struct {
 
 func (c *getUnixTimeCmd) Run(globals *Globals) error {
 	t := unixTimestamp()
+	printOutput(t, globals.Trim)
+	return nil
+}
+
+type removeWhitespaceCmd struct {
+	Spaces     bool `default:"false" short:"s" help:"Remove spaces"`
+	Tabs       bool `default:"false" short:"b" help:"Remove tabs"`
+	CR         bool `default:"false" short:"c" help:"Remove CRs"`
+	LE         bool `default:"false" short:"l" help:"Remove line endings"`
+	EmptyLines bool `default:"false" short:"e" help:"Remove empty lines"`
+}
+
+func (c *removeWhitespaceCmd) Run(globals *Globals) error {
+	in, err := readFromSTDIN()
+	if err != nil {
+		return err
+	}
+	t := removeWhitespace(in, c.Spaces, c.Tabs, c.CR, c.LE, c.EmptyLines)
 	printOutput(t, globals.Trim)
 	return nil
 }
