@@ -478,7 +478,7 @@ func (c *removeWhitespaceCmd) Run(globals *Globals) error {
 }
 
 type permissionsCmd struct {
-	Permission string `short:"p" help:"Permission in octal format (both 3 and 4 digits)"`
+	Permission string `required:"" short:"p" help:"Permission in octal format (both 3 and 4 digits)"`
 }
 
 func (c *permissionsCmd) Run(globals *Globals) error {
