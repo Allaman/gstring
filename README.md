@@ -13,6 +13,7 @@
   <p>
     Swiss army knife for working with strings
   </p>
+    <img src="https://s12.gifyu.com/images/SfRHE.gif" alt="gstring">
 </div>
 
 ## Use cases
