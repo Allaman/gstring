@@ -56,6 +56,7 @@ Commands:
   reverse              Reverses the input
   rng                  Random number generator
   sort                 Sorts the input by line
+  spell                Spell strings using phonetic alphabets (defaults to German postal alphabet)
   split                Splits a string
   tail                 Returns the last n lines
   time from-unix       Converts from Unix time to normal time

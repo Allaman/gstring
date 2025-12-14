@@ -51,6 +51,7 @@ type CLI struct {
 	Reverse          reverseCmd          `cmd:"" help:"Reverses the input"`
 	Rng              rngCmd              `cmd:"" help:"Random number generator"`
 	Sort             sortCmd             `cmd:"" help:"Sorts the input by line"`
+	Spell            spellCmd            `cmd:"" help:"Spell strings using phonetic alphabets (defaults to German postal alphabet)"`
 	Split            splitCmd            `cmd:"" help:"Splits a string"`
 	Tail             tailCmd             `cmd:"" help:"Returns the last n lines"`
 	Time             struct {
