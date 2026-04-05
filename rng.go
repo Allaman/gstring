@@ -22,15 +22,31 @@ func pseudoRandomGenerator(start, end, n int, delimiter string) (string, error) 
 }
 
 const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+const defaultSpecialChars = "!@#$%^&*()-_=+[]{}|;:,.<>?"
 
-func generateRandomPasswords(length, count int) []string {
+func generateRandomPasswords(length, count, minSpecial int, specialChars string) ([]string, error) {
+	cs := charset
+	if specialChars != "" {
+		cs += specialChars
+	}
+	if minSpecial > 0 && specialChars == "" {
+		return nil, fmt.Errorf("--min-special requires --special or --special-chars")
+	}
+	if minSpecial > length {
+		return nil, fmt.Errorf("--min-special (%d) cannot exceed password length (%d)", minSpecial, length)
+	}
 	passwords := make([]string, count)
 	for j := 0; j < count; j++ {
 		password := make([]byte, length)
 		for i := range password {
-			password[i] = charset[rand.Intn(len(charset))]
+			password[i] = cs[rand.Intn(len(cs))]
+		}
+		// guarantee minSpecial special chars at distinct random positions
+		positions := rand.Perm(length)[:minSpecial]
+		for _, pos := range positions {
+			password[pos] = specialChars[rand.Intn(len(specialChars))]
 		}
 		passwords[j] = string(password)
 	}
-	return passwords
+	return passwords, nil
 }

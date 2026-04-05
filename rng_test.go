@@ -53,7 +53,10 @@ func TestPseudoRandomGenerator(t *testing.T) {
 func TestGenerateRandomPasswords(t *testing.T) {
 	length := 10
 	count := 5
-	passwords := generateRandomPasswords(length, count)
+	passwords, err := generateRandomPasswords(length, count, 0, "")
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
 	if len(passwords) != count {
 		t.Errorf("expected to generate %d passwords, got %d", count, len(passwords))
 	}
@@ -68,6 +71,43 @@ func TestGenerateRandomPasswords(t *testing.T) {
 				if (char < 'a' || char > 'z') && (char < 'A' || char > 'Z') && (char < '0' || char > '9') {
 					t.Errorf("unexpected character in password: %c", char)
 				}
+			}
+		})
+	}
+}
+
+func TestGenerateRandomPasswordsWithSpecialChars(t *testing.T) {
+	length := 20
+	count := 10
+	specials := "!@#"
+	minSpecial := 3
+	passwords, err := generateRandomPasswords(length, count, minSpecial, specials)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if len(passwords) != count {
+		t.Errorf("expected to generate %d passwords, got %d", count, len(passwords))
+	}
+
+	allowed := charset + specials
+	for _, password := range passwords {
+		t.Run(password, func(t *testing.T) {
+			if len(password) != length {
+				t.Errorf("expected password length %d, got %d", length, len(password))
+			}
+			for _, char := range password {
+				if !strings.ContainsRune(allowed, char) {
+					t.Errorf("unexpected character in password: %c", char)
+				}
+			}
+			specialCount := 0
+			for _, char := range password {
+				if strings.ContainsRune(specials, char) {
+					specialCount++
+				}
+			}
+			if specialCount < minSpecial {
+				t.Errorf("expected at least %d special chars, got %d in %q", minSpecial, specialCount, password)
 			}
 		})
 	}

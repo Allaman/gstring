@@ -404,14 +404,26 @@ func (c *rngCmd) Run(globals *Globals) error {
 }
 
 type pwGenCmd struct {
-	Length    int    `default:"10" short:"n" help:"Length of password"`
-	Count     int    `default:"1" short:"c" help:"Number of passwords to generate"`
-	Delimiter string `default:"\n" short:"d" help:"Output delimiter"`
+	Length       int    `default:"10" short:"n" help:"Length of password"`
+	Count        int    `default:"1" short:"c" help:"Number of passwords to generate"`
+	Delimiter    string `default:"\n" short:"d" help:"Output delimiter"`
+	Special      bool   `default:"false" short:"s" help:"Include special characters"`
+	SpecialChars string `default:"!@#$%^&*()-_=+[]{}|;:,.<>?" short:"x" help:"Special characters to use (implies --special)"`
+	MinSpecial   int    `default:"1" short:"m" help:"Minimum number of special characters (only effective with --special or --special-chars)"`
 }
 
 func (c *pwGenCmd) Run(globals *Globals) error {
-	passwords := strings.Join(generateRandomPasswords(c.Length, c.Count), c.Delimiter)
-	printOutput(passwords, globals.Trim)
+	specialChars := ""
+	minSpecial := 0
+	if c.Special || c.SpecialChars != defaultSpecialChars {
+		specialChars = c.SpecialChars
+		minSpecial = c.MinSpecial
+	}
+	passwords, err := generateRandomPasswords(c.Length, c.Count, minSpecial, specialChars)
+	if err != nil {
+		return err
+	}
+	printOutput(strings.Join(passwords, c.Delimiter), globals.Trim)
 	return nil
 }
 
