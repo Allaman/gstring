@@ -1,11 +1,11 @@
 module github.com/allaman/gstring
 
-go 1.22.1
+go 1.25.0
 
 require (
-	github.com/alecthomas/kong v0.9.0
-	golang.org/x/crypto v0.23.0
-	golang.org/x/text v0.15.0
+	github.com/alecthomas/kong v1.15.0
+	golang.org/x/crypto v0.49.0
+	golang.org/x/text v0.35.0
 )
 
-require github.com/dustin/go-humanize v1.0.1 // indirect
+require github.com/dustin/go-humanize v1.0.1
